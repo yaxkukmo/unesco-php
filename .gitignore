@@ -1,0 +1,13 @@
+/vendor/
+/storage/logs/*.log
+/coverage/
+.env
+.DS_Store
+Thumbs.db
+composer.lock
+*.cache
+*~
+.idea/
+.vscode/
+.phpunit.result.cache
+.claude
