@@ -21,8 +21,8 @@ class ListSiteController {
       'meta' => [
         'total' => $results->total,
         'page' => $filter->page,
-        'per_page' => $filter->perPage,
-        'last_page' => (int)ceil($results->total / $filter->perPage),
+        'perPage' => $filter->perPage,
+        'lastPage' => (int)ceil($results->total / $filter->perPage),
       ],
     ]);
   }
