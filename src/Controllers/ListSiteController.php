@@ -16,6 +16,7 @@ class ListSiteController {
     $results = $this->service->handle($filter);
 
     HttpResponse::json([
+      'success' => true,
       'data' => $results->sites,
       'meta' => [
         'total' => $results->total,

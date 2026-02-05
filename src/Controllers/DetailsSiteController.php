@@ -13,10 +13,10 @@ class DetailsSiteController {
   {
     $result = $this->service->handle($id);
     if (!$result) {
-      HttpResponse::json(['error' => 'Site not found'], 404);
+      HttpResponse::json(['success' => false, 'error' => 'Site not found'], 404);
       return;
     }
 
-    HttpResponse::json(['data' => $result]);
+    HttpResponse::json(['success' => true, 'data' => $result]);
   }
 }

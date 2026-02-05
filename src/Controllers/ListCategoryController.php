@@ -12,7 +12,7 @@ class ListCategoryController {
     public function __invoke(): void
     {
         $result = $this->service->handle();
-        HttpResponse::json(['data' => $result->categories]);
+        HttpResponse::json(['success' => true, 'data' => $result->categories]);
     }
 
 }

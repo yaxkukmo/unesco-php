@@ -16,16 +16,19 @@ class JwtController {
 
     if ($email !== $_ENV['API_USER_EMAIL'] || !password_verify($password,
   $_ENV['API_USER_PASSWORD'])) {
-      HttpResponse::json(['error' => 'Invalid credentials'], 401);
+      HttpResponse::json(['success' => false, 'error' => 'Invalid credentials'], 401);
       return;
     }
 
     $token = $this->service->handle($email);
 
     HttpResponse::json([
-      'access_token' => $token,
-      'token_type' => 'Bearer',
-      'expires_in' => (int)$_ENV['JWT_EXPIRATION']
+      'success' => true,
+      'data' => [
+        'access_token' => $token,
+        'token_type' => 'Bearer',
+        'expires_in' => (int)$_ENV['JWT_EXPIRATION']
+      ]
     ]);
   }
 }
