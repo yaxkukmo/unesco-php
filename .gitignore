@@ -11,3 +11,5 @@ composer.lock
 .vscode/
 .phpunit.result.cache
 .claude
+DDD.md
+*.geany
