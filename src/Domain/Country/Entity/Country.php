@@ -15,7 +15,7 @@ final class Country {
 
   public static function create(CountryName $name): self {
     $country = new self(null, $name);
-    $this->events[] = new CountryCreated($name);
+    $country->events[] = new CountryCreated($name);
     return $country;
   }
 

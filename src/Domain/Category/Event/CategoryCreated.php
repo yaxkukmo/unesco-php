@@ -8,10 +8,10 @@ use App\Domain\Category\ValueObject\CategoryName;
 use DateTimeImmutable;
 
 final class CategoryCreated {
-  public readonly DateTimeImmutable $occuredAt;
+  public readonly DateTimeImmutable $occurredAt;
 
   public function __construct(public readonly CategoryName $name) {
-    $this->occuredAt = new DateTimeImmutable();
+    $this->occurredAt = new DateTimeImmutable();
   }
 
 }

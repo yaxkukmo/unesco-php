@@ -22,7 +22,7 @@ final class CountryId {
     return $this->value;
   }
 
-  public equals(self $other): bool {
+  public function equals(self $other): bool {
     return $this->value === $other->value;
   }
 }

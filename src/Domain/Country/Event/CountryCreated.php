@@ -8,10 +8,10 @@ use App\Domain\Country\ValueObject\CountryName;
 use DateTimeImmutable;
 
 final class CountryCreated {
-  public readonly DateTimeImmutable $occuredAt;
+  public readonly DateTimeImmutable $occurredAt;
 
   public function __construct(public readonly CountryName $name) {
-    $this->occuredAt = new DateTimeImmutable();
+    $this->occurredAt = new DateTimeImmutable();
   }
 
 }

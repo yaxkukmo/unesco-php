@@ -7,7 +7,6 @@ namespace App\Domain\Category\Entity;
 
 use App\Domain\Category\ValueObject\CategoryId;
 use App\Domain\Category\ValueObject\CategoryName;
-use App\Domain\Category\Entity\Category;
 use App\Domain\Category\Event\CategoryCreated;
 
 final class Category {

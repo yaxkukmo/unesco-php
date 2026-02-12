@@ -27,65 +27,68 @@ final class Site {
     private ?Coordinates $coordinates,
     private ?CountryId $countryId,
     private Status $status
-  ) { }
+  ) {}
 
-  public static function create(Id $id, Name $name, ?Description $description, ?ExternalUrl $externalUrl, ?CountryId $countryId, ?Coordinates $coordinates): self {
-    $status = Status::Pending;
-    $site = new self($id, $name, $description, $externalUrl, $coordinates, $countryId, $status);
-    $site->events[] = new SiteCreated($name, $coordinates);
+  public static function create(
+    Name $name,
+    ?Description $description,
+    ?ExternalUrl $externalUrl,
+    ?Coordinates $coordinates,
+    ?CountryId $countryId,
+  ): self {
+    $id = Id::generate();
+    $site = new self($id, $name, $description, $externalUrl, $coordinates, $countryId, Status::Pending);
+    $site->events[] = new SiteCreated($id, $name, $coordinates);
     return $site;
   }
 
-  public static function fromPersistence(Id $id, Name $name, ?Description $description, ?ExternalUrl $externalUrl, ?Coordinates $coordinates, ?CountryId $countryId, Status $status, array $categoryIds = []): self {
-    $site = new self($id, $name, $description, $externalUrl, $coordinates, $status);
+  public static function fromPersistence(
+    Id $id,
+    Name $name,
+    ?Description $description,
+    ?ExternalUrl $externalUrl,
+    ?Coordinates $coordinates,
+    ?CountryId $countryId,
+    Status $status,
+    array $categoryIds = [],
+  ): self {
+    $site = new self($id, $name, $description, $externalUrl, $coordinates, $countryId, $status);
     $site->categoryIds = $categoryIds;
     return $site;
   }
 
-  public function attachCategory(CategoryId $categoryId): void {
-    $this->categoryIds[$categoryId->value] = $categoryId;
-  }
-
-  public function categoryIds(): array {
-    return array_values($this->categoryIds);
-  }
-
   public function approve(): void {
-    if ($this->status !== Status::Pending) throw new DomainException('Cannot approve site with status other than pending');
+    if ($this->status !== Status::Pending) {
+      throw new DomainException('Cannot approve site with status other than pending');
+    }
     $this->status = Status::Approved;
   }
 
   public function reject(): void {
-    if ($this->status !== Status::Pending) throw new DomainException('Cannot reject site with status other than pending');
+    if ($this->status !== Status::Pending) {
+      throw new DomainException('Cannot reject site with status other than pending');
+    }
     $this->status = Status::Rejected;
-  }
-
-  public function id(): ?Id {
-    return $this->id;
-  }
-
-  public function name(): Name {
-    return $this->name;
-  }
-
-  public function description(): ?Description {
-    return $this->description;
-  }
-
-  public function externalUrl(): ?ExternalUrl {
-    return $this->externalUrl;
-  }
-
-  public function coordinates(): ?Coordinates {
-    return $this->coordinates;
-  }
-
-  public function status(): Status {
-    return $this->status;
   }
 
   public function rename(Name $newName): void {
     $this->name = $newName;
+  }
+
+  public function attachCategory(CategoryId $categoryId): void {
+    $this->categoryIds[$categoryId->value()] = $categoryId;
+  }
+
+  public function id(): Id { return $this->id; }
+  public function name(): Name { return $this->name; }
+  public function description(): ?Description { return $this->description; }
+  public function externalUrl(): ?ExternalUrl { return $this->externalUrl; }
+  public function coordinates(): ?Coordinates { return $this->coordinates; }
+  public function countryId(): ?CountryId { return $this->countryId; }
+  public function status(): Status { return $this->status; }
+
+  public function categoryIds(): array {
+    return array_values($this->categoryIds);
   }
 
   public function releaseEvents(): array {

@@ -15,8 +15,8 @@ final class CountryName {
 
   public static function create(string $value): self {
     $value = trim($value);
-    if ($value === '') throw new InvalidArgumentException('Name cannot empty');
-    if (mb_strlen($value) > 200) throw new InvalidArgumentException('Country name exceed limit characters')
+    if ($value === '') throw new InvalidArgumentException('Name cannot be empty');
+    if (mb_strlen($value) > 200) throw new InvalidArgumentException('Country name cannot exceed 200 characters');
     return new self($value);
   }
 
