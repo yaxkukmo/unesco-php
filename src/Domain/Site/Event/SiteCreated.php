@@ -10,13 +10,11 @@ use App\Domain\Site\ValueObject\Coordinates;
 use DateTimeImmutable;
 
 final class SiteCreated {
-  public readonly DateTimeImmutable $occurredAt;
 
   public function __construct(
     public readonly Id $id,
     public readonly Name $name,
     public readonly ?Coordinates $coordinates,
-  ) {
-    $this->occurredAt = new DateTimeImmutable();
-  }
+    public readonly DateTimeImmutable $occurredAt = new DateTimeImmutable()
+  ) { }
 }

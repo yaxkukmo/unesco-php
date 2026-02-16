@@ -8,7 +8,7 @@ use App\Domain\Site\Entity\Site;
 use App\Domain\Site\ValueObject\Id;
 
 interface SiteCommandRepositoryInterface {
+  public function findById(Id $id): Site;
   public function save(Site $site): void;
   public function delete(Id $id): void;
-  public function findById(Id $id): Site;
 }

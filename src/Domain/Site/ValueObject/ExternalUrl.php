@@ -7,7 +7,7 @@ namespace App\Domain\Site\ValueObject;
 use InvalidArgumentException;
 
 final class ExternalUrl {
-  private string $value;
+  private readonly string $value;
 
   private function __construct(string $value) {
     $this->value = $value;
