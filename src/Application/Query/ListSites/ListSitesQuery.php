@@ -9,6 +9,6 @@ final class ListSitesQuery {
     public readonly int $page = 1,
     public readonly int $perPage = 20,
     public readonly ?int $countryId = null,
-    public readonly ?string $category = null,
+    public readonly ?int $categoryId = null,
   ) {}
 }

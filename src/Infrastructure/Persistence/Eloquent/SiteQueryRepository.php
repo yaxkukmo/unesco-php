@@ -42,9 +42,9 @@ class SiteQueryRepository implements SiteQueryRepositoryInterface {
     if ($query->countryId !== null) {
       $builder->where('country_id', $query->countryId);
     }
-    if ($query->category !== null) {
+    if ($query->categoryId !== null) {
       $builder->whereHas('categories', function (Builder $q) use ($query) {
-        $q->where('name', 'like', "%{$query->category}%");
+        $q->where('id', $query->categoryId);
       });
     }
   }

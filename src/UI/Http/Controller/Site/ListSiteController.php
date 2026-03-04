@@ -15,10 +15,10 @@ final class ListSiteController {
   public function __invoke(): void
   {
     $query = new ListSitesQuery(
-      page: (int) ($_GET['page'] ?? 1),
+      page: max(1, (int) ($_GET['page'] ?? 1)),
       perPage: (int) ($_GET['perPage'] ?? 20),
       countryId: isset($_GET['country']) ? (int) $_GET['country'] : null,
-      category: $_GET['category'] ?? null,
+      categoryId: isset($_GET['category']) ? (int) $_GET['category'] : null,
     );
 
     $result = $this->queryBus->ask($query);

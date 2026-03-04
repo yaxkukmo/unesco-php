@@ -164,7 +164,7 @@ $router->mount(API_SITES, function () use ($router, $container) {
     $controller = $container->get(ListSiteController::class);
     $controller();
   });
-  $router->get('/([a-f0-9-]{36})', function ($id) use ($container) {
+  $router->get('/(\d+)', function ($id) use ($container) {
     $controller = $container->get(DetailsSiteController::class);
     $controller($id);
   });
